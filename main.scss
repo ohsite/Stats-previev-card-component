@@ -1,0 +1,158 @@
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
+
+//colors
+$color-dark-blue: hsl(233, 47%, 7%);
+$color-desaturated-blue: hsl(244, 38%, 16%);
+$color-violet: hsl(277, 64%, 61%);
+
+$color-white: hsl(0, 0%, 100%);
+$color-main-paragraph: hsla(0, 0%, 100%, 0.75);
+$color-stat-heading: hsla(0, 0%, 100%, 0.6);
+
+//use mixin to scale for mobile devices
+@mixin respond($breakpoint) {
+	@if $breakpoint == phone {
+		@media (max-width: 37.5em) {
+			@content;
+		}
+	}
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
+	font-size: 1.5rem;
+	background: $color-dark-blue;
+	color: $color-white;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	display: flex;
+	width: 80%;
+	background: $color-desaturated-blue;
+	border-radius: 7px;
+	@include respond(phone) {
+		flex-direction: column-reverse;
+		text-align: center;
+	}
+
+	&__left {
+		padding: 8rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 50%;
+		@include respond(phone) {
+			width: 90%;
+			padding: 4rem 2rem;
+		}
+	}
+	&__img-box {
+		height: 44rem;
+		border-bottom-right-radius: 7px;
+		width: 50%;
+		background-image: linear-gradient($color-violet, $color-violet),
+			url('images/image-header-desktop.jpg');
+		background-blend-mode: multiply;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-origin: center center;
+		@include respond(phone) {
+			background-image: linear-gradient($color-violet, $color-violet),
+				url('images/image-header-mobile.jpg');
+			width: 100%;
+			height: 25rem;
+			border-top-left-radius: 7px;
+		}
+	}
+}
+
+.header {
+	font-size: 3.7rem;
+	font-weight: 700;
+	&__strong-text {
+		color: $color-violet;
+	}
+
+	@include respond(phone) {
+		font-size: 2.4rem;
+		margin-bottom: 2rem;
+	}
+}
+.main {
+	color: $color-main-paragraph;
+	margin-top: -4rem;
+	line-height: 2rem;
+	max-width: 40ch;
+	@include respond(phone) {
+		margin-top: 0;
+		font-size: 1.3rem;
+		margin-bottom: 3.75rem;
+	}
+}
+
+.numbers {
+	display: flex;
+	justify-content: space-between;
+	max-width: 35ch;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		font-family: 'Lexend Deca', sans-serif;
+		text-transform: uppercase;
+		color: $color-stat-heading;
+		font-size: 1.3rem;
+		@include respond(phone) {
+			margin: 1.5rem;
+		}
+	}
+	&__top {
+		color: $color-white;
+		font-family: 'Inter', sans-serif;
+		font-weight: 700;
+		font-size: 2.2rem;
+		text-transform: none;
+		margin-bottom: 0.5rem;
+	}
+
+	@include respond(phone) {
+		flex-direction: column;
+	}
+}
+
+.footer {
+	color: $color-stat-heading;
+	margin-top: 2rem;
+	opacity: 0.5;
+
+	& * a:link,
+	& * a:active {
+		text-decoration: none;
+		color: $color-violet;
+	}
+
+	& * a:hover {
+		color: $color-white;
+	}
+	@include respond(phone) {
+		display: none;
+	}
+}
